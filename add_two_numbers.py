@@ -1,20 +1,6 @@
 class Solution:
     # @return a ListNode
     def addTwoNumbers(self, l1, l2):
-        """Returns the sum list represents the sum of two lists.
-
-        Solution:
-            Traverse both lists. One by one pick the nodes of both and add their
-        values. If sum if more than ten then make carry as 1 and reduce the sum
-        as the modular of sum divides by ten.
-            If one list is larger than the other, we consider the remaining value
-        of the list as 0, also while advancing both l1 and l2, if any of them is
-        None keep it as None.
-
-        Analysis:
-            Time Complexity: O(M+N) where M and N are sizes of nodes in first
-            and second lists respectively.
-        """
         if not l1:
             return l2
 
