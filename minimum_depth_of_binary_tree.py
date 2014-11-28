@@ -13,16 +13,11 @@ class Solution:
     def minDepth(self, root):
         if not root:
             return 0
-        return self.minHeight(root, 0)
+        return self.minHeight(root)
 
-    def minHeight(self, root, depth):
+    def minHeight(self, root):
         if not root:
-            return depth
-
-        if root.left and not root.right:
-            return self.minHeight(root.left, depth+1)
-        elif not root.left and root.right:
-            return self.minHeight(root.right, depth+1)
-        else:
-            return min(self.minHeight(root.left, depth+1),
-                       self.minHeight(root.right, depth+1))
+            return 2^31-1
+        if not root.left and not root.right:
+            return 1
+        return min(self.minHeight(root.left), self.minHeight(root.right)) + 1
