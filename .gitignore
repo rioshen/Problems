@@ -55,3 +55,6 @@ target/
 
 # idea
 .idea/
+
+# local test file
+test.py
