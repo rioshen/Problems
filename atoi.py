@@ -19,7 +19,7 @@ class Solution:
         elif str[0] == '+':
             str = str[1:]
 
-        # multiply by 10 for each elemenet in the string
+        # multiply by 10 for each element in the string
         result = 0
         for elem in str:
             if elem.isdigit():
