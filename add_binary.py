@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 class Solution:
     # @param a, a string
     # @param b, a string
@@ -9,7 +7,8 @@ class Solution:
             return b
         commlen = max(len(a), len(b))
         a, b = a.zfill(commlen), b.zfill(commlen)
-        result, carry = [], 0
+        result = []
+        carry = 0
         for i in xrange(commlen-1, -1, -1):
             res = carry + int(a[i]) + int(b[i])
             carry, res = res / 2, res % 2
