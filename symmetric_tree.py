@@ -16,15 +16,20 @@ class Solution:
         return self.symmetric(root.left, root.right)
 
     def symmetric(self, left, right):
-        if not left and not right:
+        if not left and not right: # base case, hit the end
             return True
-        if not left or not right:
+
+        if not left or not right: # subtrees have different depths
             return False
-        return left.val == right.val and \
-            self.symmetric(left.left, right.right) and \
+        if left.val != right.val: # subnodes' value aren't equal
+            return False
+        
+        # recursively compare subtrees
+        return self.symmetric(left.left, right.right) and \
             self.symmetric(left.right, right.left)
 
     def isSymmetric(self, root):
+        '''Iteratly traverse the tree in preorder.'''
         if not root:
             return True
         stack = [root.left, root.right]
