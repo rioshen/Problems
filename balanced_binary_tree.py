@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Definition for a  binary tree node
 # class TreeNode:
 #     def __init__(self, x):
@@ -11,35 +9,30 @@ class Solution:
     # @param root, a tree node
     # @return a boolean
     def isBalanced(self, root):
-        """按照定义判断树是否平衡的标准方式。但是递归调用的次数过多，
-        会造成超时。"""
-        if not root:
+        if not root: # empty tree is balanced tree
             return True
-        lft, rgt = self.getHeight(root.left), self.getHeight(root.right)
-        if abs(lft - rgt) <= 1 or self.isBalanced(root.left) or \
-            self.isBalanced(root.right):
-            return True
-        return False
-
-    def getHeight(self, root):
-        if not root:
+        else:
+            return self.getHeight(root) != -1
+    
+    def getHeight(self, node):
+        '''Return -1 if any subtrees of current node is unbalanced, otherwise
+        returns the maximum height of subtrees.'''
+        if not node: # base case, visiting a leaf
             return 0
-        return max(self.getHeight(root.left), self.getHeight(root.right)) + 1
-
-    def isBalanced(self, root):
-        if not root:
-            return True
-        return self.getHeight(root) != -1
-
-    def getHeight(self, root):
-        if not root:
-            return 0
-        left = self.getHeight(root.left)
-        if left == -1:
+        
+        # check left subtree, if it's unbalanced, prune the path
+        # we don't need to recursively check the right subtree
+        left = self.getHeight(node.left)
+        if left == -1: 
             return -1
-        right = self.getHeight(root.right)
+            
+        # check right subtree, same like left subtree
+        right = self.getHeight(node.right)
         if right == -1:
             return -1
+            
+        # over the definition of balanced tree
         if abs(left - right) > 1:
             return -1
+            
         return max(left, right) + 1
