@@ -5,7 +5,8 @@ class Solution:
         if not tokens:
             return 0
         
-        # use a {operator: result} table for effectively fetch
+        # use a {operator: result} table for effectively fetch 
+        # corresponding operation
         operations = {'+': lambda x, y: x+y,
                       '-': lambda x, y: x-y,
                       '*': lambda x, y: x*y
@@ -15,13 +16,14 @@ class Solution:
             if token not in operations:
                 stack.append(int(token))
             else:
-                # stack is not ready
+                # stack is not ready, throw exception
                 if not stack:
                     raise ValueError('underflow')
                 # encounter a operator, pop two parameter
                 # from the stack
                 a, b = stack.pop(), stack.pop()
                 
-                # push the result back to the stack
+                # push the temporary result back to the stack
                 stack.append(operations[token](b, a))
+
         return stack.pop()
