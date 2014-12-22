@@ -1,6 +1,13 @@
-#!/usr/bin/env python
+# Definition for a  binary tree node
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 class Solution:
+    # @param root, a tree node
+    # @return a list of integers
     def preorderTraversal(self, root):
         if not root:
             return []
@@ -19,6 +26,6 @@ class Solution:
             return []
         result = []
         result.append(root.val)
-        result.extend(self.preorderTraversal(root.left))
-        result.extend(self.preorderTraversal(root.right))
+        result += self.preorderTraversal(root.left)
+        result += self.preorderTraversal(root.right)
         return result
