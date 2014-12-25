@@ -1,9 +1,7 @@
-#!/usr/bin/env python
-
 class Solution:
     # @return an integer
     def threeSumClosest(self, num, target):
-        if not num:
+        if not num or len(num) < 3:
             return []
         num.sort()
         closest = 1 << 32
