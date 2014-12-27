@@ -30,3 +30,32 @@ class Solution:
         result += self.preorder(root.left)
         result += self.preorder(root.right)
         return result
+
+    def flatten(self, root):
+        if not root: return # base case
+        
+        self.flatten(root.left)
+        self.flatten(root.right)
+        
+        if not root.left: return
+        
+        lft = root.left
+        while lft.right:
+            lft = root.right
+        lft.right = root.left
+        root.left = None
+        
+    def flatten(self, root):
+        if not root:
+            return
+        
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
+            
+            node.left = None
+            if stack: node.right = stack[-1]
