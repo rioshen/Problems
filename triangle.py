@@ -7,7 +7,8 @@ class Solution:
             return 0
 
         length = len(triangle) + 1
-        path = [[0] * length] * length
+        path = [[0 for _ in xrange(length)]
+                for _ in xrange(length)]
 
         for idx, val in enumerate(triangle[-1]):
             path[0][idx] = val
