@@ -25,6 +25,7 @@ class Solution:
                 lo += 1
         return False
 
+
     def search(self, A, target):
         if not A:
             raise ValueError('wtf')
