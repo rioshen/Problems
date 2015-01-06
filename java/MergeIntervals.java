@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Created by terry on 1/6/15.
+ * Created by Robert on 1/6/15.
  */
 class Interval {
     int start;
@@ -37,7 +37,7 @@ public class MergeIntervals {
                 result.add(previous);
 
                 // if the loop terminates right after this part
-                // don't forget add this current interval again!!
+                // don't forget append current interval again!!
                 previous = current;
             }
         }
