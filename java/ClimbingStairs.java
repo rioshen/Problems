@@ -1,5 +1,5 @@
 /**
- * Created by terry on 1/6/15.
+ * Created by Robert on 1/6/15.
  */
 public class ClimbingStairs {
     public int climbStairs(int n) {
