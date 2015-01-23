@@ -1,13 +1,5 @@
 import java.util.*;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    public TreeNode(int x) { this.val = x; }
-}
-
 public class BinarySearchTreeIterator {
     private Stack<Integer> nodes = new Stack<Integer>();
 

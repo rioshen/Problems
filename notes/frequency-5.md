@@ -1,3 +1,6 @@
++ First ask general case then design a general solution
++ Then for corner cases: design a special handlers
+
 Word Ladder II
 ------------------------
 
