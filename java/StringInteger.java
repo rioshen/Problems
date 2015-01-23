@@ -1,5 +1,7 @@
 /**
- * Created by terry on 1/6/15.
+ * Created by Robber on 1/6/15.
+ * String to Integer (atoi)
+ * https://oj.leetcode.com/problems/string-to-integer-atoi/
  */
 public class StringInteger {
     public int atoi(String number) {
@@ -14,14 +16,14 @@ public class StringInteger {
 
         int position = (number.charAt(0) == '+' || number.charAt(0) == '-') ? 1 : 0;
         boolean negative = (number.charAt(0) == '-');
-        long result = 0;
+        double result = 0.0;
         while (position < number.length()) {
             char ch = number.charAt(position);
-            if (ch < '0' || ch > '9')  {
+            if (!Character.isDigit(ch)) {
                 break;
             }
             result = result * 10 + ch - '0';
-            if (!negative && result > Integer.MAX_VALUE) break;
+            if (result > Integer.MAX_VALUE) break;
         }
 
         if (negative && -result < Integer.MIN_VALUE) return Integer.MIN_VALUE;
