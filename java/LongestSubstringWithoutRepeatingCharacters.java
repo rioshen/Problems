@@ -2,15 +2,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by terry on 1/4/15.
+ * Created by Robbert on 1/4/15.
  */
 public class LongestSubstringWithoutRepeatingCharacters {
-    /**
-     *
-     * @param s
-     * @return
-     */
-    public int lengthOfLongestSubstring(String s) {
+     public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             throw new IllegalArgumentException();
         }
