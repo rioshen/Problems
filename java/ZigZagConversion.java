@@ -12,7 +12,7 @@ public class ZigZagConversion {
         int lens = s.length();
         int blockSize = 2 * nRows - 2;
         int blockCount = (lens + blockSize - 1) / blockSize;
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for (int i = 0; i < nRows; i++) {
             for (int j = 0; j < blockCount; j++) {
                 int start = j * blockSize;
