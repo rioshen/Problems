@@ -11,9 +11,10 @@ public class GenerateParentheses {
         List<String> result = new LinkedList<String>();
         if (n <= 0) {
             return result;
+        } else {
+            generateHelper(result, "", n, n);
+            return result;
         }
-        generateHelper(result, "", n, n);
-        return result;
     }
 
     private void generateHelper(List<String> res, String str, int left, int right) {
