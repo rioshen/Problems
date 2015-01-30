@@ -13,9 +13,17 @@ public class JumpGame {
         int i = 0;
         while (i < maxJumpLength && maxJumpLength < A.length) {
             maxJumpLength = Math.max(maxJumpLength, i + A[i] + 1);
+            System.out.println(i + " " + maxJumpLength);
             i++;
         }
 
+
         return maxJumpLength >= A.length;
+    }
+
+    public static void main(String[] args) {
+        JumpGame sol = new JumpGame();
+        int[] test = new int[]{1, 0, 3, 4, 5};
+        System.out.println(sol.canJump(test));
     }
 }
