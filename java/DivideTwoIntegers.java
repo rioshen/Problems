@@ -50,7 +50,6 @@ public class DivideTwoIntegers {
             while ((b << shift) <= a) {
                 shift++;
             }
-            System.out.println(shift);
             if (shift >= 32) {
                 return negative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             }
