@@ -4,7 +4,7 @@ public class CompareVersionNumbers {
             throw new IllegalArgumentException();
         }
 
-        // bug 1: split by dot
+        // bug 1: split by dot must use regx
         String[] v1 = version1.split("\\.");
         String[] v2 = version2.split("\\.");
 
@@ -15,7 +15,7 @@ public class CompareVersionNumbers {
             int c2 = l2 <= i ? 0 : Integer.parseInt(v2[i]);
             if (c1 > c2) {
                 return 1;
-            } else if (c1 < c2){ // bug2: forget compare condition 
+            } else if (c1 < c2){ // bug2: forget the comparison condition 
                 return -1;
             }
         }
