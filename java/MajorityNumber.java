@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 
 /**
  * Created by Robbert on 1/23/15.
+ * Majority Element
+ * https://oj.leetcode.com/problems/majority-element/
  */
 public class MajorityNumber {
     public int majorityElement(int[] num) {
