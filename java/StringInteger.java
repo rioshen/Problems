@@ -20,7 +20,7 @@ public class StringInteger {
         
         boolean negative = str.charAt(0) == '-';
         // bug 1: don't forget + sign
-        // int pos = str.charAt(0) == '-' || str.charAt(0) == '+' ? 1 : 0;
+        int pos = str.charAt(0) == '-' || str.charAt(0) == '+' ? 1 : 0;
         // I think below is a good way to filter multiple +/-
         //while (pos < str.length() && (str.charAt(pos) == '+' || str.charAt(pos) == '-')) pos++;
             
