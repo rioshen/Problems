@@ -38,7 +38,6 @@ public class StringInteger {
                 return negative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             }
             res = res * 10 + c - '0';
-            
             pos++;
         }
         
