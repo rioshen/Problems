@@ -9,15 +9,10 @@ public class RemoveElement {
             return 0;
         }
 
-        int left = 0;
-        int right = 0;
-        while (right < A.length) {
-            if (A[right] != elem) {
-                A[left++] = A[right];
-            }
-            right++;
+        int len = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] != elem) A[len++] = A[i];
         }
-
-        return left;
+        return len;
     }
 }
