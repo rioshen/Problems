@@ -7,7 +7,13 @@ import java.util.List;
  * https://oj.leetcode.com/problems/pascals-triangle/
  */
 public class PascalTriangle {
-    public List<List<Integer>> generate(int numRows) {
+    /**
+     * Compare with the second line, fill zeros to each empty position.
+     * For example, second line is [1, 1] but first line is [1], use zeros
+     * fill first line: [0, 1], [1, 0], add them -> [1, 1].
+     * Time: O(n), Space:O(n)
+     */
+    public List<List<Integer>> generateAddtionalSpace(int numRows) {
         List<List<Integer>> result = new LinkedList<List<Integer>>();
         if (numRows <= 0) {
             return result;
@@ -34,6 +40,31 @@ public class PascalTriangle {
         LinkedList<Integer> result = new LinkedList<Integer>();
         for (int i = 0; i < a.size(); i++) {
             result.add(a.get(i) + b.get(i));
+        }
+        return result;
+    }
+
+    /**
+     * binomial coefficient
+     */    
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res = new LinkedList<List<Integer>>();
+        if (numRows <= 0) return res;
+        for (int i = 1; i <= numRows; i++) {
+            List<Integer> level = generateCurrent(i);
+            res.add(level);
+        }
+        return res;
+    }
+    
+    private List<Integer> generateCurrent(int n) {
+        if (n < 1) return null;
+        List<Integer> result = new LinkedList<Integer>();
+        int m = 1;
+        result.add(1);
+        for (int i = 1; i < n; i++) {
+            m = m * (n - i) / i;
+            result.add(m);
         }
         return result;
     }
