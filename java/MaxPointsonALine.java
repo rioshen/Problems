@@ -34,7 +34,6 @@ public class MaxPointsonALine {
                 // same slope
                 double slope = getSlope(prev, curr);
                 map.put(slope, map.containsKey(slope) ? map.get(slope) + 1 : 1);
-
             }
 
             // bug 2: if only contains duplicates, need to update maxPoints
