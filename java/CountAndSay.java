@@ -4,24 +4,29 @@
  * https://oj.leetcode.com/problems/count-and-say/
  */
 public class CountAndSay {
+    /**
+     * 1211 -> 111221 -> 312211 -> 13112221
+     * Here we're basically doing a encoding and decoding like run length compression
+     * Base String is "1" and counter should also be 1
+     * first time in the loop, we push str + counter to buffer
+     * Next time (we have 11), i starts at 1, if i == i - 1, counter++.
+     */
     public String countAndSay(int n) {
-        String current = "1";
+        if (n <= 0) return "";
+        String prefix = "1";
         while (n > 1) {
             StringBuilder sb = new StringBuilder();
-            char[] content = current.toCharArray();
-            for (int i = 0; i < content.length; i++) {
-                int count = 1;
-                while ((i + 1) < content.length && content[i] == content[i + 1]) {
-                    count++;
+            for (int i = 0; i < prefix.length(); i++) {
+                int counter = 1;
+                while (i + 1 < prefix.length() && prefix.charAt(i) == prefix.charAt(i + 1)) {
+                    counter++;
                     i++;
                 }
-                sb.append(String.valueOf(count) + String.valueOf(content[i]));
+                sb.append(counter).append(prefix.charAt(i));
             }
-            current = sb.toString();
+            prefix = sb.toString();
             n--;
         }
-
-        return current;
+        return prefix;
     }
-
 }

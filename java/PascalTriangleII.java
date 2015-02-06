@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class PascalTriangleII {
     /**
      * Line 1: [1, 0]
