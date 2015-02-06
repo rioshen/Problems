@@ -11,8 +11,7 @@ public class AddBinary {
             return a;
         }
 
-        int i = a.length() - 1;
-        int j = b.length() - 1;
+        int i = a.length() - 1, j = b.length() - 1;
         int carry = 0;
         String result = "";
         while (i >= 0 || j >= 0) {
