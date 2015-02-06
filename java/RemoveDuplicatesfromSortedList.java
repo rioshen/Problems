@@ -5,11 +5,10 @@
  */
 public class RemoveDuplicatesfromSortedList {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
+        if (head == null || head.next == null) return head;
 
         ListNode curr = head;
+        // bug 1: need to consider curr.next == null
         while (curr != null && curr.next != null) {
             if (curr.val == curr.next.val) {
                 curr.next = curr.next.next;
@@ -17,8 +16,6 @@ public class RemoveDuplicatesfromSortedList {
                 curr = curr.next;
             }
         }
-
         return head;
     }
-
 }
