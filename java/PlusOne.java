@@ -13,7 +13,7 @@ public class PlusOne {
         for (int i = digits.length - 1; i >= 0; i--) {
             int sum = carry + digits[i];
             digits[i] = sum % 10;
-            carry = sum % 10;
+            carry = sum / 10;
             // optimize: once we found carry is zero, terminate the program
             if (carry == 0) {
                 return digits;
