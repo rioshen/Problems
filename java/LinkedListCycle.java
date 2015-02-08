@@ -7,6 +7,12 @@ import java.util.Set;
  * https://oj.leetcode.com/problems/linked-list-cycle/
  */
 public class LinkedListCycle {
+    /**
+     * Use a <code>Set<ListNode></code> as a filter, once we found
+     * a duplicate return true.
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     */
     public boolean hasCycle(ListNode head) {
         if (head == null) {
             return false;
