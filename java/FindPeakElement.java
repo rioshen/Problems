@@ -4,6 +4,13 @@
  * https://oj.leetcode.com/problems/find-peak-element/
  */
 public class FindPeakElement {
+    public int findPeakElementLinear(int[] num) {
+        for (int i = 1; i < num.length - 1; i++) {
+            if (num[i - 1] > num[i]) return i - 1;
+        }
+        return num.length - 1;
+    }
+    
     public int findPeakElement(int[] num) {
         if (num == null || num.length == 0) {
             return 0;
