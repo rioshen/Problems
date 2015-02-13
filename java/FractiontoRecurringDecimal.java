@@ -5,37 +5,26 @@
  */
 public class FractiontoRecurringDecimal {
     public String fractionToDecimal(int numerator, int denominator) {
-        if (denominator == 0) {
-            return "";
+        String sign = "";
+        if ((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0)) {
+            sign = "-";
         }
-        String result = String.valueOf((double)numerator / denominator);
-        System.out.println(result);
-        StringBuilder content = new StringBuilder();
-        boolean foundDups = false;
-        char prev = '0';
-        for (int i = 0; i < result.length() - 1; i++) {
-            char curr = result.charAt(i);
-            if (curr == result.charAt(i + 1)) {
-                foundDups = true;
-                prev = curr;
-                continue;
+        long a = Math.abs((long)numerator), b = Math.abs((long)denominator);
+        StringBuffer buf = new StringBuffer(sign+a/b);
+        a=a%b*10;
+        if(a!=0)
+            buf.append('.');
+        HashMap<Long, Integer>  map = new HashMap();// value of A to index of inserted
+        while(a!=0){// we can have the result, and save a into the map
+            if(map.containsKey(a)){// it is a loop
+                buf.insert((int)map.get(a), '(');
+                buf.append(')');
+                return buf.toString();
             }
-            if (foundDups) {
-                content.append("(").append(curr).append(")");
-                foundDups = false;
-            } else {
-                content.append(curr);
-            }
+            map.put(a,buf.length());
+            buf.append(""+ a/b );
+            a = a%b *10;
         }
-        if (foundDups) {
-            content.append("(").append(prev).append(")");
-        }
-
-        return content.toString();
-    }
-
-    public static void main(String[] args) {
-        FractiontoRecurringDecimal sol = new FractiontoRecurringDecimal();
-        System.out.println(sol.fractionToDecimal(1, 90));
+        return buf.toString();
     }
 }

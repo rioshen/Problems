@@ -1,55 +1,80 @@
 import java.util.*;
 
-/**
- * Created by terry on 1/4/15.
- */
 public class WordLadderII {
-    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-        if (start == null || end == null || dict == null) {
-            throw new IllegalArgumentException();
-        }
+    public List<List<String>> findLadders(String start, String end,
+            Set<String> dict) {
+        List<List<String>> ladders = new ArrayList<List<String>>();
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        Map<String, Integer> distance = new HashMap<String, Integer>();
 
-        // construct the graph based on the given dictionary
-        Map<String, ArrayList<String>> graph = new HashMap<String, ArrayList<String>>();
         dict.add(start);
         dict.add(end);
-        for (String word : dict) {
-            graph.put(word, new ArrayList<String>());
+ 
+        bfs(map, distance, start, end, dict);
+        
+        List<String> path = new ArrayList<String>();
+        
+        dfs(ladders, path, end, start, distance, map);
+
+        return ladders;
+    }
+
+    void dfs(List<List<String>> ladders, List<String> path, String crt,
+            String start, Map<String, Integer> distance,
+            Map<String, List<String>> map) {
+        path.add(crt);
+        if (crt.equals(start)) {
+            Collections.reverse(path);
+            ladders.add(new ArrayList<String>(path));
+            Collections.reverse(path);
+        } else {
+            for (String next : map.get(crt)) {
+                if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) { 
+                    dfs(ladders, path, next, start, distance, map);
+                }
+            }           
         }
-        for (String word : dict) {
-            for (int i = 0; i < word.length(); i++) {
-                for (char c = 'a'; c <= 'z'; c++) {
-                    if (c != word.charAt(i)) {
-                        String expanded = word.substring(0, i) + c + word.substring(i + 1);
-                        if (dict.contains(expanded)) {
-                            graph.get(word).add(expanded);
-                        }
+        path.remove(path.size() - 1);
+    }
+
+    void bfs(Map<String, List<String>> map, Map<String, Integer> distance,
+            String start, String end, Set<String> dict) {
+        Queue<String> q = new LinkedList<String>();
+        q.offer(start);
+        distance.put(start, 0);
+        for (String s : dict) {
+            map.put(s, new ArrayList<String>());
+        }
+        
+        while (!q.isEmpty()) {
+            String crt = q.poll();
+
+            List<String> nextList = expand(crt, dict);
+            for (String next : nextList) {
+                map.get(next).add(crt);
+                if (!distance.containsKey(next)) {
+                    distance.put(next, distance.get(crt) + 1);
+                    q.offer(next);
+                }
+            }
+        }
+    }
+
+    List<String> expand(String crt, Set<String> dict) {
+        List<String> expansion = new ArrayList<String>();
+
+        for (int i = 0; i < crt.length(); i++) {
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                if (ch != crt.charAt(i)) {
+                    String expanded = crt.substring(0, i) + ch
+                            + crt.substring(i + 1);
+                    if (dict.contains(expanded)) {
+                        expansion.add(expanded);
                     }
                 }
             }
         }
 
-        // do a bfs search
-        List<List<String>> result = new LinkedList<List<String>>();
-        Queue<String> queue = new LinkedList<String>();
-        queue.add(start);
-        while (!queue.isEmpty()) {
-            String current = queue.poll();
-            List<String> path = new LinkedList<String>();
-
-        }
-
-
-        return null;
-    }
-
-    public static void main(String[] args) {
-        Set<String> set = new HashSet<String>();
-        set.add("dot");
-        set.add("hot");
-        set.add("dog");
-        set.add("lot");
-        set.add("log");
-        new WordLadderII().findLadders("null", "null", set);
+        return expansion;
     }
 }
