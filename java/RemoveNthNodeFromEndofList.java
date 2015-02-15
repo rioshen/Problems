@@ -13,23 +13,22 @@ public class RemoveNthNodeFromEndofList {
         if (head == null) return null;
         
         ListNode fast = head;
-        for (int i = 0; i < n; i++) {
+        while (n >= 1 && fast != null) {
             fast = fast.next;
+            n--;
         }
-        if (fast == null) {
-            // bug 1: head can also be removed
-            // {1,2}, 2 -> {2}
+        if (n == 0 && fast == null) {
             head = head.next;
             return head;
         }
-
-        ListNode slow = head;        
+        
+        ListNode slow = head;
         while (fast.next != null) {
             fast = fast.next;
             slow = slow.next;
         }
-        
         slow.next = slow.next.next;
+
         return head;
     }
 }
