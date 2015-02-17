@@ -25,7 +25,6 @@ public class ConvertSortedListtoBinarySearchTree {
         }
 
         int mid = lo + (hi - lo) / 2; // avoid integer overflow
-        System.out.println("mid " + mid);
         ListNode middle = findMiddle(head, mid);
 
         TreeNode root = new TreeNode(middle.val);
