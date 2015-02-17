@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class MergekSortedLists {
     /**
-     * TLE, O(N)
+     * TLE, O(Nk^2)
      * @param lists
      * @return
      */

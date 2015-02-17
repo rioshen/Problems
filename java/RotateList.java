@@ -15,8 +15,9 @@ public class RotateList {
         ListNode dummy = new ListNode(Integer.MAX_VALUE);
         dummy.next = head;
         head = dummy;
-        for (int i = 0; i <= n; i++) {
+        while (n != 0) {
             head = head.next;
+            n--;
         }
         ListNode tail = dummy;
         while (head.next != null) {
