@@ -1,37 +1,30 @@
 import java.util.*;
 
-public class BinarySearchTreeIterator {
-    private Stack<Integer> nodes = new Stack<Integer>();
+public class BSTIterator {
+    private TreeNode current;
+    private Stack<TreeNode> stack = new Stack<TreeNode>();
 
-    public BinarySearchTreeIterator(TreeNode root) {
-        if (root == null) {
-            return; 
-        }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        List<Integer> result = new ArrayList<Integer>();
-        TreeNode current = root;
-        while (current != null || !stack.isEmpty()) {
-            if (current != null) {
+    public BSTIterator(TreeNode root) {
+        current = root;
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stack.isEmpty() || current != null;
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        } else {
+            while (current != null) {
                 stack.push(current);
                 current = current.left;
-            } else {
-                current = stack.pop();
-                result.add(current.val);
-                current = current.right;
             }
+            TreeNode node = stack.pop();
+            current = node.right;
+            return node.val;
         }
-
-        Collections.reverse(result);
-        for (int entry : result) {
-            nodes.push(entry);
-        }
-    }
-
-    public boolean hasNext() {
-        return !nodes.isEmpty();
-    }
-    
-    public int next() {
-        return nodes.pop();
     }
 }
