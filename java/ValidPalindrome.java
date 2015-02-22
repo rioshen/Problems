@@ -16,13 +16,13 @@ public class ValidPalindrome {
         }
         return true;
     }
-    
+
     private boolean isValid(String s, int pos) {
         // bug 1: number is also valid
         //return s.charAt(pos) >= 'A' && s.charAt(pos) <= 'z';
         return Character.isDigit(s.charAt(pos)) || Character.isLetter(s.charAt(pos));
     }
-    
+
     private boolean isSame(String s, int i, int j) {
         return Character.toLowerCase(s.charAt(i)) == Character.toLowerCase(s.charAt(j));
     }
