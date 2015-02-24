@@ -1,5 +1,8 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Collections;
+import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Created by Robbert on 1/27/15.
@@ -12,26 +15,20 @@ public class LargestNumber {
             return "0";
         }
 
-        String[] content = new String[num.length];
-        for (int i = 0; i < content.length; i++) {
-            content[i] = String.valueOf(num[i]);
+        List<String> content = new LinkedList<String>();
+        for (int elem : num) {
+            content.add(String.valueOf(elem));
         }
 
-        Arrays.sort(content, new Comparator<String>() {
+        Collections.sort(content, new Comparator<String>() {
             @Override
             public int compare(String a, String b) {
-                double t1 = Double.valueOf(a + b);
-                double t2 = Double.valueOf(b + a);
-                if (t1 > t2) {
-                    return -1;
-                } else if (t1 < t2) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+                Double t1 = Double.valueOf(a + b);
+                Double t2 = Double.valueOf(b + a);
+                return t2.compareTo(t1);
             }
         });
-        if (content[0].equals("0")) {
+        if (content.get(0).equals("0")) {
             return "0";
         }
 
