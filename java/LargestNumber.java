@@ -4,11 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.LinkedList;
 
-/**
- * Created by Robbert on 1/27/15.
- * Largest Number
- * https://oj.leetcode.com/problems/largest-number/
- */
 public class LargestNumber {
     public String largestNumber(int[] num) {
         if (num == null || num.length == 0) {
