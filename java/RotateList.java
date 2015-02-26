@@ -1,5 +1,4 @@
 /**
- * Created by Robbert on 2/1/15.
  * Rotate List
  * https://oj.leetcode.com/problems/rotate-list/
  */

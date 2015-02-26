@@ -1,5 +1,4 @@
 /**
- * Created by Robbert on 1/31/15.
  * Word Search
  * https://oj.leetcode.com/problems/word-search/
  */
