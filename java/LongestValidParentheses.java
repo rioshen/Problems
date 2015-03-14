@@ -19,15 +19,17 @@ public class LongestValidParentheses {
         Stack<Integer> stack = new Stack<Integer>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c == ')' && !stack.isEmpty() && s.charAt(stack.peek()) == '(') {
-                stack.pop();
-                if (stack.isEmpty()) {
-                    len = i + 1;
-                } else {
-                    len = Math.max(len, i - stack.peek());
-                }
-            } else {
+            if (c == '(') {
                 stack.push(i);
+            } else {
+                if (!stack.isEmpty() && s.charAt(stack.peek()) == '(') {
+                    stack.pop();
+                    if (stack.isEmpty()) {
+                        len = i + 1;
+                    } else {
+                        len = Math.max(len, i - stack.peek();
+                    }
+                }
             }
         }
 
