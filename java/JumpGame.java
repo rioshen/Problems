@@ -1,5 +1,5 @@
 /**
- * Created by Robbert on 1/27/15.
+ * Created by Carl Shen on 1/27/15.
  * Jump Game
  * https://oj.leetcode.com/problems/jump-game/
  */
@@ -9,13 +9,13 @@ public class JumpGame {
             return false;
         }
 
-        int maxJumpLength = 1;
-        int i = 0;
-        while (i < maxJumpLength && maxJumpLength < A.length) {
-            maxJumpLength = Math.max(maxJumpLength, i + A[i] + 1);
-            i++;
+        int maxStep = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (maxStep >= i) {
+                maxStep = Math.max(maxStep, A[i] + i);
+            }
         }
 
-        return maxJumpLength >= A.length;
-    }
+        return maxStep >= (A.length - 1);
+   }
 }
