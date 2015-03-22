@@ -9,11 +9,11 @@ public class WordLadderII {
 
         dict.add(start);
         dict.add(end);
- 
+
         bfs(map, distance, start, end, dict);
-        
+
         List<String> path = new ArrayList<String>();
-        
+
         dfs(ladders, path, end, start, distance, map);
 
         return ladders;
@@ -29,10 +29,10 @@ public class WordLadderII {
             Collections.reverse(path);
         } else {
             for (String next : map.get(crt)) {
-                if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) { 
+                if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) {
                     dfs(ladders, path, next, start, distance, map);
                 }
-            }           
+            }
         }
         path.remove(path.size() - 1);
     }
@@ -45,7 +45,7 @@ public class WordLadderII {
         for (String s : dict) {
             map.put(s, new ArrayList<String>());
         }
-        
+
         while (!q.isEmpty()) {
             String crt = q.poll();
 

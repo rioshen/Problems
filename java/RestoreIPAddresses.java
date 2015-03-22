@@ -2,17 +2,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Robbert on 2/1/15.
+ * Created by Carl Shen on 2/1/15.
  * Restore IP Addresses
  * https://oj.leetcode.com/problems/restore-ip-addresses/
  */
 public class RestoreIPAddresses {
     public List<String> restoreIpAddresses(String s) {
-        List<String> res = new LinkedList<String>();
         if (s == null || s.length() < 4 || s.length() > 12) {
-            return res;
+            return null;
         }
 
+        List<String> res = new LinkedList<String>();
         List<String> sol = new LinkedList<String>();
         generateIPAddress(s, 0, sol, res);
         return res;
@@ -39,8 +39,7 @@ public class RestoreIPAddresses {
         for (String elem : sol) {
             address.append(elem).append(".");
         }
-        address.deleteCharAt(address.length() - 1);
-        return address.toString();
+        return address.substring(0, address.length() - 1);
     }
 
     private boolean isValidIP(String address) {
