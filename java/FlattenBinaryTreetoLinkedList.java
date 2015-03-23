@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 /**
- * Created by Robbert on 1/26/15.
+ * Created by Carl Shen on 1/26/15.
  * Flatten Binary Tree to Linked List
  * https://oj.leetcode.com/problems/flatten-binary-tree-to-linked-list/
  */
@@ -48,5 +48,18 @@ public class FlattenBinaryTreetoLinkedList {
             }
             curr = curr.right;
         }
+    }
+
+    public void flattenRec(TreeNode root) {
+        if (root == null) return;
+        TreeNode left = root.left, right = root.right;
+        root.left = null;
+        flattenRec(left);
+        flattenRec(right);
+        root.right = left;
+
+        TreeNode curr = root;
+        while (curr.right != null) curr = curr.right;
+        curr.right = right;
     }
 }

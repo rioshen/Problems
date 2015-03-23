@@ -1,8 +1,9 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
- * Created by terry on 1/6/15.
+ * Created by Carl Shen on 1/6/15.
  */
 public class ValidBinarySearchTree {
     private List<Integer> inorder(TreeNode root) {
@@ -31,6 +32,26 @@ public class ValidBinarySearchTree {
             }
         }
 
+        return true;
+    }
+
+    public boolean isValidBSTiter(TreeNode root) {
+        if (root == null) return true;
+        TreeNode curr = root, prev = null;
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || curr != null) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                curr = stack.pop();
+                if (prev != null && curr.val <= prev.val) {
+                    return false;
+                }
+                prev = curr;
+                curr = curr.right;
+            }
+        }
         return true;
     }
 }
