@@ -3,12 +3,12 @@ public class MinimumWindowSubstring {
         if (S == null || S.length() == 0 || S.length() < T.length()) {
             return "";
         }
-    
+
         Map<Character, Integer> map = new HashMap<Character, Integer>();
         for (char c : T.toCharArray()) {
             map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
         }
-    
+
         int l = 0;
         int count = 0;
         int len = Integer.MAX_VALUE;
@@ -18,12 +18,12 @@ public class MinimumWindowSubstring {
             if (!map.containsKey(c)) {
                 continue;
             }
-        
+
             map.put(c, map.get(c) - 1);
             if (map.get(c) >= 0) {
                 count++;
             }
-        
+
             while (count == T.length()) {
                 if (r - l + 1 < len) {
                     len = r - l + 1;
@@ -39,11 +39,11 @@ public class MinimumWindowSubstring {
                 l++;
             }
         }
-    
+
         if (len > S.length()) {
             return "";
         }
-    
+
         return S.substring(start, start + len);
     }
 }
