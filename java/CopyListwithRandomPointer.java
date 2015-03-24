@@ -1,47 +1,41 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class RandomListNode {
     int label;
     RandomListNode next, random;
     RandomListNode(int x) { this.label = x; }
 };
 /**
- * Created by Robbert on 1/31/15.
+ * Created by Carl Shen on 1/31/15.
  * Copy List with Random Pointer
  * https://oj.leetcode.com/problems/copy-list-with-random-pointer/
  */
 public class CopyListwithRandomPointer {
     public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) {
-            return null;
+        if (head == null) return null;
+
+        RandomListNode curr = head;
+        while (curr != null) {
+            RandomListNode temp = new RandomListNode(curr.label);
+            temp.next = curr.next;
+            curr.next = temp;
+            curr = temp.next;
         }
 
-        Map<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
-        RandomListNode dummy = new RandomListNode(0);
-        RandomListNode pre = dummy, newNode;
-        while (head != null) {
-            if (map.containsKey(head)) {
-                newNode = map.get(head);
-            } else {
-                newNode = new RandomListNode(head.label);
-                map.put(head, newNode);
+        curr = head;
+        while (curr != null) {
+            if (curr.random != null) {
+                curr.next.random = curr.random.next;
             }
-            pre.next = newNode;
-
-            if (head.random != null) {
-                if (map.containsKey(head.random)) {
-                    newNode.random = map.get(head.random);
-                } else {
-                    newNode.random = new RandomListNode(head.random.label);
-                    map.put(head.random, newNode.random);
-                }
-            }
-
-            pre = newNode;
-            head = head.next;
+            curr = curr.next.next;
         }
 
-        return dummy.next;
+        curr = head;
+        RandomListNode copy = curr.next;
+        while (curr.next != null) {
+            RandomListNode temp = curr.next;
+            curr.next = temp.next;
+            curr = temp;
+        }
+
+        return copy;
     }
 }

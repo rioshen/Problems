@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Created by Robbert on 1/23/15.
+ * Created by Carl Shen on 1/23/15.
  * Intersection of Two Linked Lists
  * https://oj.leetcode.com/problems/intersection-of-two-linked-lists/
  */
@@ -26,7 +26,7 @@ public class IntersectionofTwoLinkedLists {
         }
         return null;
     }
-    
+
     /**
      * Use two pointer to iterate two lists at the same time, if they have same length
      * two pointers may point to same node, and it is the intersection.
@@ -41,31 +41,27 @@ public class IntersectionofTwoLinkedLists {
          }
          return len;
      }
-     
+
      public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
          if (headA == null || headB == null) {
              return null;
          }
          int lenA = length(headA), lenB = length(headB);
-         ListNode currA = headA, currB = headB;
-         while (lenA > lenB) {
-             currA = currA.next;
-             // bug 1: forgot to decrease condition variable
-             lenA--;
+         if (lenA > lenB) {
+             return getIntersectionNode(headB, headA);
          }
-         while (lenB > lenA) {
-             currB = currB.next;
-             lenB--;
+         for (int i = lenB - lenA; i > 0; i--) {
+             headB = headB.next;
          }
-         while (currA != currB) {
-             currA = currA.next;
-             currB = currB.next;
+         while (headA != headB) {
+             headA = headA.next;
+             headB = headB.next;
          }
-         return currA;
+         return headA;
      }
 
      /**
-      * Didn't accept, because OJ detected that I modified the 
+      * Didn't accept, because OJ detected that I modified the
       * internal data structure, I tried to avoid that, but still got caught.
       * We can also point the tail to head of B, then we have a cycle
       * So right now our target is to find the cycle node
@@ -77,7 +73,7 @@ public class IntersectionofTwoLinkedLists {
              tail = tail.next;
          }
          tail.next = headB;
-         
+
          ListNode fast = headA;
          ListNode slow = headA;
          while (fast != null && fast.next != null) {
@@ -92,7 +88,7 @@ public class IntersectionofTwoLinkedLists {
                  return slow;
              }
          }
-         
+
          // bug 1: OJ doesn't allow to modify the linked structure.
          tail.next = null;
          return null;
