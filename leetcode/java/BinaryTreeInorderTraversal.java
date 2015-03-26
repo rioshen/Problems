@@ -2,11 +2,14 @@ import java.util.*;
 
 public class BinaryTreeInorderTraversal {
     public List<Integer> inorder(TreeNode root) {
-        List<Integer> result = new LinkedList<>();
-        if (root == null) return result;
+        if (root == null) {
+            return new LinkedList<Integer>();
+        }
 
-        Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
+        List<Integer> result = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+
         while (!stack.isEmpty() || curr != null) {
             if (curr != null) {
                 stack.push(curr);

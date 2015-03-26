@@ -1,5 +1,5 @@
 /**
- * Created by Robbert on 1/25/15.
+ * Created by Carl Shen on 1/25/15.
  * Implement strStr()
  * https://oj.leetcode.com/problems/implement-strstr/
  */
@@ -11,18 +11,21 @@ public class ImplementStrStr {
      */
     public int strStr(String haystack, String needle) {
         if (haystack == null || needle == null) {
-            throw new IllegalArgumentException();
+            return -1;
         }
-        
-        // bug 1: if needle.length is zero return 0;
-        if (haystack.length() >= needle.length() && needle.length() == 0) return 0;
-        if (haystack.length() < needle.length()) return -1;
-        
-        for (int i = 0; i < haystack.length(); i++) {
-            for (int j = 0; j < needle.length(); j++) {
-                if (i + j >= haystack.length()) return -1;
-                if (haystack.charAt(i + j) != needle.charAt(j)) break;
-                if (j == needle.length() - 1) return i;
+        int hLen = haystack.length(), nLen = needle.length();
+        if (nLen == 0) {
+            return 0;
+        } else if (hLen < nLen) {
+            return -1;
+        }
+
+        for (int i = 0; i < hLen; i++) {
+            int n = 0, h = i;
+            while (n < nLen && h < hLen && haystack.charAt(h) == needle.charAt(n)) {
+                h++;
+                n++;
+                if (n == nLen) return i;
             }
         }
         return -1;
