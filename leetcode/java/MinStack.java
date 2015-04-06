@@ -57,7 +57,10 @@ class MyStack {
 
     public boolean isEmpty() { return tail == null; }
 
-    public int peek() { return tail.val; }
+    public int peek() {
+        if (tail == null) throw new NoSuchElementException();
+        return tail.val;
+    }
 }
 
 class MinStackScratch {
