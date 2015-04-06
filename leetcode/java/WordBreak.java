@@ -1,7 +1,7 @@
 import java.util.Set;
 
 /**
- * Created by Robbert on 2/1/15.
+ * Created by Carl Shen on 2/1/15.
  * Word Break
  * https://oj.leetcode.com/problems/word-break/
  */
@@ -40,30 +40,19 @@ public class WordBreak {
     }
 
     public boolean wordBreakII(String s, Set<String> dict) {
-        if (s == null || dict == null) {
-            return false;
-        }
-        if (dict.contains(s)) {
+        if (s == null || s.length() == 0) {
             return true;
         }
-
-        boolean[] table = new boolean[s.length() + 1];
-        table[0] = true;
-        for (int i = 0; i < s.length(); i++) {
-            if (!table[i]) {
-                continue;
-            }
-            for (String seg : dict) {
-                int end = i + seg.length();
-                if (end > s.length() || table[end]) {
-                    continue;
-                }
-                if (s.substring(i, end).equals(seg)) {
-                    table[end] = true;
+        
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && dict.contains(s.substring(j, i)))) {
+                    dp[i] = true;
                 }
             }
         }
-
-        return table[s.length()];
+        return dp[s.length() - 1];
     }
 }

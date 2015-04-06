@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Robbert on 2/3/15.
@@ -53,18 +53,28 @@ public class MergekSortedLists {
     public ListNode mergeKListsMergeSort(List<ListNode> lists) {
         if (lists == null || lists.size() == 0) {
             return null;
-        } else {
-            return mergeHelper(lists, 0, lists.size() - 1);
         }
-    }
 
-    private ListNode mergeHelper(List<ListNode> lists, int lo, int hi) {
-        if (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            return merge(mergeHelper(lists, lo, mid), mergeHelper(lists, mid + 1, hi));
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.size(), new Comparator<ListNode>(){
+            @Override
+            public int compare(ListNode l1, ListNode l2) {
+                return l1.val - l2.val;
+            }
+        });
+        for (ListNode list : lists) {
+            if (list != null) {
+                queue.offer(list);
+            }
         }
-        return lists.get(lo);
+
+        ListNode dummy = new ListNode(-1);
+        ListNode curr = dummy;
+        while (!queue.isEmpty()) {
+            ListNode head = queue.poll();
+            curr.next = head;
+            if (head.next != null) queue.offer(head.next);
+            curr = curr.next;
+        }
+        return dummy.next;
     }
-
-
 }
