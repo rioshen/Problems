@@ -1,22 +1,35 @@
 public class SwapNodesinPairs {
+    // iteration
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null) return head;
 
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        ListNode dummy = new ListNode(-1);
         ListNode curr = dummy;
-        dummy.next = head;
-
-        while (curr.next != null && curr.next.next != null) {
-            ListNode first = curr.next;
-            ListNode second = curr.next.next;
+        while (head != null && head.next != null) {
+            ListNode first = head;
+            ListNode second = head.next;
+            ListNode next = head.next.next;
 
             first.next = second.next;
             second.next = first;
             curr.next = second;
 
-            curr = curr.next.next;
+            head = next;
+            curr = first;
         }
 
-        return dummy.next;
+       return dummy.next;
+    }
+
+    // recursive
+    public ListNode SwapNodesinPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode newHead = head.next;
+        head.next = SwapNodesinPairs(newHead.next);
+        newHead.next = head;
+        return newHead;
     }
 }
